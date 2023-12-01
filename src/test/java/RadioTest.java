@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
     @Test
     public void moreStationThanThereIs() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(11);
         int expected = radio.getCurrentStation();
         int actual = radio.getCurrentStation();
         Assertions.assertEquals(expected, actual);
@@ -40,7 +40,7 @@ public class RadioTest {
 
     @Test
     public void switchesNextStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(10);
         radio.setCurrentStation(8);
         radio.next();
         int expected = 9;
@@ -71,10 +71,10 @@ public class RadioTest {
 
     @Test
     public void switchesNextLastStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(8);
         radio.next();
-        int expected = 0;
+        int expected = 9;
         int actual = radio.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
@@ -117,6 +117,15 @@ public class RadioTest {
         int expected = 0;
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void whenSwitchesStationZero(){
+        Radio radio=new Radio(10);
+        radio.setCurrentStation(9);
+        radio.next();
+        int expected=0;
+        int actual=radio.getCurrentStation();
+        Assertions.assertEquals(expected,actual);
     }
 
 
